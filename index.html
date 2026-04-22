@@ -454,7 +454,6 @@
   display: none;
 }
 
-
 /* PANAH */
 .arrow {
   position: absolute;
@@ -530,33 +529,7 @@ function slideRight() {
     behavior: 'smooth'
   });
 }
-</script>
-  
-}
-/* PREVIEW */
-function openPreview(src) {
-  document.getElementById("preview").style.display = "flex";
-  document.getElementById("preview-img").src = src;
-}
 
-function closePreview() {
-  document.getElementById("preview").style.display = "none";
-}
-
-/* SLIDER */
-function slideLeft() {
-  document.getElementById("slider").scrollBy({
-    left: -300,
-    behavior: 'smooth'
-  });
-}
-
-function slideRight() {
-  document.getElementById("slider").scrollBy({
-    left: 300,
-    behavior: 'smooth'
-  });
-}
 </script>
 
 <section class="video-section">
