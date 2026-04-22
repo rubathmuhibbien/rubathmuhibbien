@@ -481,11 +481,9 @@
   background: rgba(0,0,0,0.8);
 }
 
-/* PREVIEW SMOOTH */
+/* PREVIEW */
 .preview {
-  display: flex;
-  opacity: 0;
-  visibility: hidden;
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -495,15 +493,16 @@
   justify-content: center;
   align-items: center;
   z-index: 9999;
-
-  transition: opacity 0.3s ease;
 }
 
-.preview.show {
-  opacity: 1;
-  visibility: visible;
+.preview img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
 }
 
+</style>
+</section>
 .preview img {
   max-width: 90%;
   max-height: 90%;
@@ -515,7 +514,6 @@
 
 .preview.show img {
   transform: scale(1);
-}
 }
 
 </style>
