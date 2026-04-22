@@ -361,7 +361,7 @@
    target="_blank"
    rel="noopener noreferrer"
    class="btn-primary fade-up delay-3">
-   Daftar Sekarang
+   Dapatkan Informasi
 </a>
     </a>
   </div>
@@ -390,148 +390,32 @@
 <!-- ====== GALLERY FIX FINAL ====== -->
   <h2>Kegiatan Terbaru</h2>
 
-  <div class="slider-container">
-    
-    <button class="arrow left" onclick="slideLeft()">❮</button>
-
-    <div class="gallery-slider" id="slider">
-      <img src="Images/a.jpg" onclick="openPreview(this.src)">
-      <img src="Images/b.jpg" onclick="openPreview(this.src)">
-      <img src="Images/c.jpg" onclick="openPreview(this.src)">
-      <img src="Images/d.jpg" onclick="openPreview(this.src)">
-      <img src="Images/e.jpg" onclick="openPreview(this.src)">
-      <img src="Images/f.jpg" onclick="openPreview(this.src)">
-      <img src="Images/g.jpg" onclick="openPreview(this.src)">
-      <img src="Images/h.jpg" onclick="openPreview(this.src)">
-      <img src="Images/i.jpg" onclick="openPreview(this.src)">
-    </div>
-
-    <button class="arrow right" onclick="slideRight()">❯</button>
-
-  </div>
-</section>
-
-<!-- PREVIEW -->
-<div class="preview" id="preview" onclick="closePreview()">
-  <img id="preview-img">
-</div>
-  </div>
-</section>
-
-<style>
-
-/* CONTAINER */
-.slider-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-/* SLIDER */
-.gallery-slider {
-  display: flex;
-  overflow-x: auto;
-  gap: 15px;
-  scroll-behavior: smooth;
-  padding: 10px 0;
-}
-
-.gallery-slider img {
-  width: 200px;
-  height: 140px;
-  object-fit: cover;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.gallery-slider img:hover {
-  transform: scale(1.05);
-}
-
-/* HIDE SCROLL */
-.gallery-slider::-webkit-scrollbar {
-  display: none;
-}
-
-/* PANAH */
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.6);
-  color: white;
-  border: none;
-  font-size: 24px;
-  padding: 10px 15px;
-  cursor: pointer;
-  border-radius: 50%;
-  z-index: 10;
-}
-
-.arrow.left {
-  left: -10px;
-}
-
-.arrow.right {
-  right: -10px;
-}
-
-.arrow:hover {
-  background: rgba(0,0,0,0.8);
-}
-
-/* PREVIEW */
-.preview {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.85);
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-.preview img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 10px;
-}
-
-</style>
-</section>
-
 <script>
-/* PREVIEW */
-function openPreview(src) {
-  document.getElementById("preview").style.display = "flex";
-  document.getElementById("preview-img").src = src;
+
+function changeImage(newIndex) {
+  const img = document.getElementById("preview-img");
+
+  img.classList.add("fade"); // mulai fade out
+
+  setTimeout(() => {
+    current = newIndex;
+    img.src = images[current];
+    img.classList.remove("fade"); // fade in
+  }, 200);
 }
 
-function closePreview() {
-  document.getElementById("preview").style.display = "none";
+function nextImg() {
+  let next = (current + 1) % images.length;
+  changeImage(next);
 }
 
-/* SLIDER */
-function slideLeft() {
-  document.getElementById("slider").scrollBy({
-    left: -300,
-    behavior: 'smooth'
-  });
-}
-
-function slideRight() {
-  document.getElementById("slider").scrollBy({
-    left: 300,
-    behavior: 'smooth'
-  });
+function prevImg() {
+  let prev = (current - 1 + images.length) % images.length;
+  changeImage(prev);
 }
 
 </script>
-
+  
 <section class="video-section">
 
   <h2>Asrama Rubath Al-Muhibbien </h2>
