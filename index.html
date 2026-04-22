@@ -554,13 +554,17 @@ function slideRight() {
   max-width: 900px;
   margin: 30px auto;
   aspect-ratio: 16 / 9;
+  background: #fff; /* kalau mau tetap putih */
+  border-radius: 12px;
+  overflow: hidden; /* biar gak keluar */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 .video-wrapper video {
   width: 100%;
   height: 100%
   object-fit: cover;
-  border-radius: 12px;
+  display: block;
 }
 
   @media (max-width: 768px) {
