@@ -523,9 +523,22 @@
 
 <script>
 /* PREVIEW */
+<script>
+
 function openPreview(src) {
-  document.getElementById("preview").style.display = "flex";
-  document.getElementById("preview-img").src = src;
+  const preview = document.getElementById("preview");
+  const img = document.getElementById("preview-img");
+
+  img.src = src;
+  preview.classList.add("show");
+}
+
+function closePreview() {
+  const preview = document.getElementById("preview");
+  preview.classList.remove("show");
+}
+
+</script>
 }
 
 function closePreview() {
