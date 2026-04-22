@@ -389,30 +389,248 @@
 <!-- SECTION KEGIATAN -->
 <!-- ====== GALLERY FIX FINAL ====== -->
   <h2>Kegiatan Terbaru</h2>
+<!-- ===== SLIDER + PANAH ===== -->
+<div class="slider-container">
+
+  <button class="arrow left" onclick="slide(-300)">❮</button>
+
+  <div class="gallery-slider" id="slider">
+    <img src="Images/a.jpg" onclick="openPreview(0)">
+    <img src="Images/b.jpg" onclick="openPreview(1)">
+    <img src="Images/c.jpg" onclick="openPreview(2)">
+    <img src="Images/d.jpg" onclick="openPreview(3)">
+    <img src="Images/e.jpg" onclick="openPreview(4)">
+    <img src="Images/f.jpg" onclick="openPreview(5)">
+    <img src="Images/g.jpg" onclick="openPreview(6)">
+    <img src="Images/h.jpg" onclick="openPreview(7)">
+    <img src="Images/i.jpg" onclick="openPreview(8)">
+  </div>
+
+  <button class="arrow right" onclick="slide(300)">❯</button>
+
+</div>
+
+<!-- ===== PREVIEW ===== -->
+<div class="preview" id="preview">
+  <span class="close" onclick="closePreview()">✕</span>
+
+  <button class="nav prev" onclick="prevImg()">❮</button>
+  <img id="preview-img">
+  <button class="nav next" onclick="nextImg()">❯</button>
+</div>
+
+<style>
+
+/* ===== SLIDER ===== */
+.slider-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.gallery-slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  scroll-behavior: smooth;
+  padding: 10px 0;
+
+  scrollbar-width: none;
+}
+.gallery-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery-slider img {
+  width: 200px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.gallery-slider img:hover {
+  transform: scale(1.05);
+}
+
+/* ===== PANAH SLIDER ===== */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  font-size: 24px;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.arrow.left { left: -10px; }
+.arrow.right { right: -10px; }
+
+.arrow:hover {
+  background: rgba(0,0,0,0.8);
+}
+
+/* ===== PREVIEW ===== */
+.preview {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(5px);
+
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  z-index: 9999;
+}
+
+.preview.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.preview img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 12px;
+
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.preview img.fade {
+  opacity: 0;
+}
+
+/* ===== PANAH PREVIEW ===== */
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  font-size: 30px;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 25px;
+  color: white;
+  cursor: pointer;
+}
+
+/* LOCK SCROLL */
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* MOBILE */
+@media (max-width:768px){
+  .arrow {
+    font-size:18px;
+    padding:8px;
+    opacity:0.7;
+  }
+  .nav {
+    font-size:22px;
+  }
+}
+
+</style>
 
 <script>
 
+/* ===== DATA ===== */
+const images = [
+  "Images/a.jpg",
+  "Images/b.jpg",
+  "Images/c.jpg",
+  "Images/d.jpg",
+  "Images/e.jpg",
+  "Images/f.jpg",
+  "Images/g.jpg",
+  "Images/h.jpg",
+  "Images/i.jpg"
+];
+
+let current = 0;
+
+/* ===== SLIDER ===== */
+function slide(amount) {
+  document.getElementById("slider").scrollBy({
+    left: amount,
+    behavior: 'smooth'
+  });
+}
+
+/* ===== PREVIEW ===== */
+function openPreview(index) {
+  current = index;
+  document.getElementById("preview").classList.add("show");
+  document.getElementById("preview-img").src = images[current];
+  document.body.classList.add("no-scroll");
+}
+
+function closePreview() {
+  document.getElementById("preview").classList.remove("show");
+  document.body.classList.remove("no-scroll");
+}
+
+/* SMOOTH CHANGE */
 function changeImage(newIndex) {
   const img = document.getElementById("preview-img");
 
-  img.classList.add("fade"); // mulai fade out
+  img.classList.add("fade");
 
   setTimeout(() => {
     current = newIndex;
     img.src = images[current];
-    img.classList.remove("fade"); // fade in
+    img.classList.remove("fade");
   }, 200);
 }
 
 function nextImg() {
-  let next = (current + 1) % images.length;
-  changeImage(next);
+  changeImage((current + 1) % images.length);
 }
 
 function prevImg() {
-  let prev = (current - 1 + images.length) % images.length;
-  changeImage(prev);
+  changeImage((current - 1 + images.length) % images.length);
 }
+
+/* SWIPE */
+let startX = 0;
+const preview = document.getElementById("preview");
+
+preview.addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+});
+
+preview.addEventListener("touchend", e => {
+  let endX = e.changedTouches[0].clientX;
+
+  if (startX - endX > 50) nextImg();
+  if (endX - startX > 50) prevImg();
+});
 
 </script>
   
