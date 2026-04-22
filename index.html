@@ -538,6 +538,15 @@ function closePreview() {
 
 </script>
 }
+/* PREVIEW */
+function openPreview(src) {
+  document.getElementById("preview").style.display = "flex";
+  document.getElementById("preview-img").src = src;
+}
+
+function closePreview() {
+  document.getElementById("preview").style.display = "none";
+}
 
 /* SLIDER */
 function slideLeft() {
@@ -553,7 +562,6 @@ function slideRight() {
     behavior: 'smooth'
   });
 }
-
 </script>
 
 <section class="video-section">
