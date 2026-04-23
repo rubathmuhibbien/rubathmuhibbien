@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pondok Pesantren Rubath Al-Muhibbien</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+
+    html { scroll-behavior: smooth; }
+    body { margin:0; font-family:'Poppins', sans-serif; color:#333; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: linear-gradient(90deg, #1B5E20, #4CAF50);
+      padding:15px 40px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .logo-wrap { display:flex; align-items:center; gap:10px; }
+    .logo-wrap img { height:40px; border-radius:50%; }
+
+    header h1 { margin:0; color:white; font-family:'Playfair Display', serif; font-size:20px; }
+
+    nav { display:flex; align-items:center; gap:20px; }
+
+    nav a {
+      color:white;
+      text-decoration:none;
+      position:relative;
+      padding-bottom:5px;
+      font-size:14px;
+    }
+
+    nav a::after {
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:0;
+      width:0%;
+      height:2px;
+      background:#C8A951;
+      transition:0.3s;
+    }
+
+    nav a:hover::after { width:100%; }
+
+    .dropdown { position:relative; display:flex; align-items:center; }
+
+    .dropdown-content {
+      display:none;
+      position:absolute;
+      top:45px;
+      left:0;
+      background:white;
+      min-width:180px;
+      border-radius:8px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.2);
+      z-index:9999;
+    }
+
+    .dropdown-content a { display:block; padding:10px; color:#333; }
+    .dropdown-content a:hover { background:#f5f5f5; }
+    .dropdown:hover .dropdown-content { display:block; }
+
+    .hero {
+      height:90vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero::before {
+      content:"";
+      position:absolute;
+      top:0; left:0;
+      width:100%; height:100%;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(27,94,32,0.6)),
+        url('Images/Poto Pondok.jpg');
+      background-size:cover;
+      background-position:center;
+      z-index:0;
+      animation: zoomHero 25s ease-in-out infinite alternate;
+    }
+
+    @keyframes zoomHero {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.1); }
+    }
+
+    .hero-box {
+      background: rgba(0,0,0,0.5);
+      padding:25px 35px;
+      border-radius:10px;
+      backdrop-filter: blur(5px);
+      color:white;
+      position:relative;
+      z-index:1;
+      box-shadow:0 10px 40px rgba(0,0,0,0.3);
+    }
+
+    .hero h2 {
+      font-size:40px;
+      margin-bottom:10px;
+      text-shadow:0 3px 10px rgba(0,0,0,0.5);
+    }
+
+    .btn-primary {
+      background:#C8A951;
+      color:white;
+      padding:12px 25px;
+      border-radius:5px;
+      text-decoration:none;
+      display:inline-block;
+    }
+
+    section { padding:60px 40px; }
+
+    .about { display:flex; gap:30px; align-items:center; }
+    .about img { width:250px; border-radius:10px; }
+
+    .programs {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+      gap:20px;
+    }
+
+    .card {
+      background:white;
+      padding:20px;
+      border-radius:10px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.1);
+      text-align:center;
+    }
+
+    .gallery {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(150px,1fr));
+      gap:10px;
+    }
+
+    .gallery img {
+      width:100%;
+      border-radius:10px;
+    }
+
+    /* VIDEO */
+    .video-section { text-align:center; }
+
+    .video-wrapper {
+      width: 100%;
+      max-width: 1000px;
+      margin: 30px auto;
+      aspect-ratio: 16 / 9;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .video-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+    }
+
+    /* MAP PRO */
+    .map-container {
+      display:flex;
+      gap:30px;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    .map-wrapper {
+      flex:1;
+      min-width:300px;
+      max-width:500px;
+      border-radius:10px;
+      overflow:hidden;
+      box-shadow:0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .map-wrapper iframe {
+      width:100%;
+      height:250px;
+    }
+
+    .map-info {
+      flex:1;
+      min-width:250px;
+      max-width:400px;
+      text-align:left;
+    }
+
+    .map-info h3 {
+      margin-bottom:10px;
+      color:#1B5E20;
+    }
+
+    .map-info p {
+      margin:5px 0;
+    }
+
+    .map-info .btn-primary {
+      margin-top:10px;
+      display:inline-block;
+    }
+
+    footer {
+      background: linear-gradient(90deg, #1B5E20, #4CAF50);
+      color:white;
+      text-align:center;
+      padding:12px 10px 5px;
+      font-size:12px;
+    }
+
+    .footer-content p { margin:2px 0; }
+    .copyright { 
+     margin:2px 0; 
+     line-height: 1.4;
+     font-size:10px; 
+     opacity:0.8; 
+    }
+
+    .wa-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      padding: 15px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 9999;
+    }
+
+    .wa-btn img { width:28px; }
+
+    .fade-up {
+      opacity:0;
+      transform:translateY(30px);
+      animation:fadeUp 1s ease forwards;
+    }
+
+    .delay-1 { animation-delay:0.5s; }
+    .delay-2 { animation-delay:1s; }
+    .delay-3 { animation-delay:1.5s; }
+
+    @keyframes fadeUp {
+      to { opacity:1; transform:translateY(0); }
+    }
+/* ========================= */
+/* 📱 MOBILE RESPONSIVE FIX */
+/* ========================= */
+@media (max-width: 768px) {
+
+  /* NAVBAR */
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 15px;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  nav a {
+    font-size: 13px;
+  }
+
+  /* HERO */
+  .hero {
+    height: 70vh;
+  }
+
+  .hero h2 {
+    font-size: 22px;
+  }
+
+  .hero-box {
+    padding: 15px;
+  }
+
+  /* ABOUT */
+  .about {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about img {
+    width: 180px;
+  }
+
+  /* PROGRAM */
+  .programs {
+    grid-template-columns: 1fr;
+  }
+
+  /* GALLERY */
+  .gallery img {
+    width: 100%;
+  }
+
+  /* SECTION */
+  section {
+    padding: 40px 15px;
+  }
+
+}
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="logo-wrap">
+    <img src="Images/logo.png">
+    <h1>Rubath Al-Muhibbien</h1>
+  </div>
+
+  <nav>
+    <a href="#">Home</a>
+
+    <div class="dropdown">
+       <a href="#">Tentang ▾</a>
+       <div class="dropdown-content">
+       <a href="tentang.html">Profil Pondok</a>
+       <a href="visi.html">Visi Misi</a>
+       <a href="pengasuh.html">Pengasuh</a>
+     </div>
+   </div>
+
+    <div class="dropdown">
+      <a href="#">Program ▾</a>
+      <div class="dropdown-content">
+        <a href="#">Tahfidz</a>
+        <a href="#">Kitab Kuning</a>
+        <a href="#">Bahasa Arab</a>
+      </div>
+    </div>
+
+    <a href="#">Pendaftaran</a>
+    <a href="#">Kontak</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-box">
+    <h2 class="fade-up delay-1">Selamat Datang di Ponpes Rubath Al-Muhibbien</h2>
+    <p class="fade-up delay-2">Mencetak Generasi Muda yang Berilmu, Berakhlak, dan Mandiri</p>
+   <a href="https://wa.me/62811893121" 
+   target="_blank"
+   rel="noopener noreferrer"
+   class="btn-primary fade-up delay-3">
+   Dapatkan Informasi
+   </a>
+  </div>
+</section>
+
+<section class="about">
+  <img src="Images/Abuya.png">
+  <div>
+    <h2>Alhabib Umar Abdul Aziz Shahab</h2>
+    <p>Pondok Pesantren Rubath Al-Muhibbien berkomitmen mencetak generasi islami yang unggul.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Program Unggulan</h2>
+  <div class="programs">
+    <div class="card">Tahfidz</div>
+    <div class="card">Kitab Kuning</div>
+    <div class="card">Bahasa Arab</div>
+    <div class="card">Formal</div>
+  </div>
+</section>
+
+<section>
+<!-- SECTION KEGIATAN -->
+<!-- ====== GALLERY FIX FINAL ====== -->
+  <h2>Kegiatan Terbaru</h2>
+<!-- ===== SLIDER + PANAH ===== -->
+<div class="slider-container">
+
+  <button class="arrow left" onclick="slide(-300)">❮</button>
+
+  <div class="gallery-slider" id="slider">
+    <img src="Images/a.jpg" onclick="openPreview(0)">
+    <img src="Images/b.jpg" onclick="openPreview(1)">
+    <img src="Images/c.jpg" onclick="openPreview(2)">
+    <img src="Images/d.jpg" onclick="openPreview(3)">
+    <img src="Images/e.jpg" onclick="openPreview(4)">
+    <img src="Images/f.jpg" onclick="openPreview(5)">
+    <img src="Images/g.jpg" onclick="openPreview(6)">
+    <img src="Images/h.jpg" onclick="openPreview(7)">
+    <img src="Images/i.jpg" onclick="openPreview(8)">
+  </div>
+
+  <button class="arrow right" onclick="slide(300)">❯</button>
+
+</div>
+
+<!-- ===== PREVIEW ===== -->
+<div class="preview" id="preview">
+  <span class="close" onclick="closePreview()">✕</span>
+
+  <button class="nav prev" onclick="prevImg()">❮</button>
+  <img id="preview-img">
+  <button class="nav next" onclick="nextImg()">❯</button>
+</div>
+
+<style>
+
+/* ===== SLIDER ===== */
+.slider-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.gallery-slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  scroll-behavior: smooth;
+  padding: 10px 0;
+
+  scrollbar-width: none;
+}
+.gallery-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery-slider img {
+  width: 200px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.gallery-slider img:hover {
+  transform: scale(1.05);
+}
+
+/* ===== PANAH SLIDER ===== */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  font-size: 24px;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.arrow.left { left: -10px; }
+.arrow.right { right: -10px; }
+
+.arrow:hover {
+  background: rgba(0,0,0,0.8);
+}
+
+/* ===== PREVIEW ===== */
+.preview {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(5px);
+
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  z-index: 9999;
+}
+
+.preview.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.preview img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 12px;
+
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.preview img.fade {
+  opacity: 0;
+}
+
+/* ===== PANAH PREVIEW ===== */
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  font-size: 30px;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 25px;
+  color: white;
+  cursor: pointer;
+}
+
+/* LOCK SCROLL */
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* MOBILE */
+@media (max-width:768px){
+  .arrow {
+    font-size:18px;
+    padding:8px;
+    opacity:0.7;
+  }
+  .nav {
+    font-size:22px;
+  }
+}
+
+</style>
+
+<script>
+
+/* ===== DATA ===== */
+const images = [
+  "Images/a.jpg",
+  "Images/b.jpg",
+  "Images/c.jpg",
+  "Images/d.jpg",
+  "Images/e.jpg",
+  "Images/f.jpg",
+  "Images/g.jpg",
+  "Images/h.jpg",
+  "Images/i.jpg"
+];
+
+let current = 0;
+
+/* ===== SLIDER ===== */
+function slide(amount) {
+  document.getElementById("slider").scrollBy({
+    left: amount,
+    behavior: 'smooth'
+  });
+}
+
+/* ===== PREVIEW ===== */
+function openPreview(index) {
+  current = index;
+  document.getElementById("preview").classList.add("show");
+  document.getElementById("preview-img").src = images[current];
+  document.body.classList.add("no-scroll");
+}
+
+function closePreview() {
+  document.getElementById("preview").classList.remove("show");
+  document.body.classList.remove("no-scroll");
+}
+
+/* SMOOTH CHANGE */
+function changeImage(newIndex) {
+  const img = document.getElementById("preview-img");
+
+  img.classList.add("fade");
+
+  setTimeout(() => {
+    current = newIndex;
+    img.src = images[current];
+    img.classList.remove("fade");
+  }, 200);
+}
+
+function nextImg() {
+  changeImage((current + 1) % images.length);
+}
+
+function prevImg() {
+  changeImage((current - 1 + images.length) % images.length);
+}
+
+/* SWIPE */
+let startX = 0;
+const preview = document.getElementById("preview");
+
+preview.addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+});
+
+preview.addEventListener("touchend", e => {
+  let endX = e.changedTouches[0].clientX;
+
+  if (startX - endX > 50) nextImg();
+  if (endX - startX > 50) prevImg();
+});
+
+</script>
+
+</section>
+
+<!-- ===== VIDEO + YOUTUBE SECTION ===== -->
+<section class="video-section">
+
+  <h2>Rubath Al-Muhibbien</h2>
+
+  <div class="video-flex">
+
+    <!-- 🎬 VIDEO LOKAL -->
+    <div class="video-box">
+      <video controls>
+        <source src="video/pondok.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <!-- ▶️ YOUTUBE -->
+    <div class="video-box">
+      <iframe 
+        src="https://www.youtube.com/embed/w3tdRtM1HlI"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        title="YouTube video"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+
+/* ===== VIDEO SECTION ===== */
+.video-section {
+  text-align: center;
+}
+
+/* FLEX LAYOUT */
+.video-flex {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* BOX VIDEO */
+.video-box {
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+/* VIDEO & YOUTUBE FULL */
+.video-box video,
+.video-box iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  object-fit: cover;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .video-flex {
+    flex-direction: column;
+  }
+}
+</style>
+
+</section>
+  
+<section class="map-section">
+  <h2>Lokasi</h2>
+
+  <div class="map-container">
+    <div class="map-wrapper">
+               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7969.3548969017!2d104.796753!3d-2.9088820000000037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b7127c20fe1ed%3A0x11b9ca0aae8a961e!2sPonpes%20Rubath%20Al%20Muhibbien!5e0!3m2!1sen!2sid!4v1776840686544!5m2!1sen!2sid"></iframe>
+    </div>
+    <div class="map-info">
+      <h3>Pondok Pesantren Rubath Al-Muhibbien</h3>
+      <p>Jl. Lebak Murni, RT.022/RW.009, Sako Baru, Kec. Sako, Kota Palembang, Sumatera Selatan 30961</p>
+      <p>📞 0811 893121</p>
+
+      <a href="https://maps.google.com?q=Ponpes Rubath Al Muhibbien" target="_blank" class="btn-primary">
+        📍 Buka di Google Maps
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-content">
+  </div>
+  <p class="copyright">© 2026 Ponpes Rubath Al-Muhibbien</p>
+   <p class="copyright">Design by M.A Present</p>
+  
+</footer>
+<a href="https://wa.me/62811893121?text=Assalamu'alaikum%20saya%20ingin%20bertanya%20tentang%20Rubath%20dan%20Santri" 
+   target="_blank" 
+   class="wa-btn">
+  <img src="Images/wa.png">
+</a>
+
+<script>
+window.onload = function () {
+
+  const slider = document.getElementById("slider");
+
+  function slideLeft() {
+    slider.scrollBy({ left: -300, behavior: 'smooth' });
+  }
+
+  function slideRight() {
+    slider.scrollBy({ left: 300, behavior: 'smooth' });
+  }
+
+  function autoSlide() {
+    if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 5) {
+      slider.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      slider.scrollBy({ left: 250, behavior: 'smooth' });
+    }
+  }
+
+  let auto = setInterval(autoSlide, 3000);
+
+  slider.addEventListener("mouseenter", () => clearInterval(auto));
+  slider.addEventListener("mouseleave", () => auto = setInterval(autoSlide, 3000));
+
+}
+
+</body>
+</html>
