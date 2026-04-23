@@ -632,45 +632,78 @@ preview.addEventListener("touchend", e => {
 });
 
 </script>
-  
+
+</section>
+
+<!-- ===== VIDEO + YOUTUBE SECTION ===== -->
 <section class="video-section">
 
-  <h2>Asrama Rubath Al-Muhibbien </h2>
+  <h2>Asrama Rubath Al-Muhibbien</h2>
 
-  <div class="video-wrapper">
-    <video controls>
-      <source src="video/pondok.mp4" type="video/mp4">
-      Browser tidak mendukung video
-    </video>
+  <div class="video-flex">
+
+    <!-- 🎬 ASRAMA RUBATH -->
+    <div class="video-box">
+      <video controls>
+        <source src="video/pondok.mp4" type="video/mp4">
+        Browser tidak mendukung video
+      </video>
+    </div>
+
+    <!-- ▶️ VIDEO TERBARU -->
+    <div class="video-box">
+      <iframe 
+        src="https://www.youtube.com/embed/w3tdRtM1HlI"
+        title="YouTube video"
+        allowfullscreen>
+      </iframe>
+    </div>
+
   </div>
 
 </section>
 
 <style>
+
+/* ===== VIDEO SECTION ===== */
 .video-section {
   text-align: center;
 }
 
-.video-wrapper {
-  max-width: 900px;
-  margin: 30px auto;
+/* FLEX LAYOUT */
+.video-flex {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* BOX VIDEO */
+.video-box {
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
   aspect-ratio: 16 / 9;
-  background: #fff; /* kalau mau tetap putih */
   border-radius: 12px;
-  overflow: hidden; /* biar gak keluar */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
 }
 
-.video-wrapper video {
+/* VIDEO & YOUTUBE FULL */
+.video-box video,
+.video-box iframe {
   width: 100%;
-  height: 100%
+  height: 100%;
+  border: none;
   object-fit: cover;
-  display: block;
 }
 
-  @media (max-width: 768px) {
-  .video-wrapper {
-    aspect-ratio: 16 / 9;
+/* MOBILE */
+@media (max-width: 768px) {
+  .video-flex {
+    flex-direction: column;
   }
 }
 </style>
