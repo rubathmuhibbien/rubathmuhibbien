@@ -154,6 +154,23 @@
       border-radius:10px;
     }
 
+    /* VIDEO */
+    .video-section { text-align:center; }
+
+    .video-wrapper {
+      width: 100%;
+      max-width: 1000px;
+      margin: 30px auto;
+      aspect-ratio: 16 / 9;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .video-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+    }
+
     /* MAP PRO */
     .map-container {
       display:flex;
@@ -615,7 +632,83 @@ preview.addEventListener("touchend", e => {
 });
 
 </script>
-  
+
+</section>
+
+<!-- ===== VIDEO + YOUTUBE SECTION ===== -->
+<section class="video-section">
+
+  <h2>Rubath Al-Muhibbien</h2>
+
+  <div class="video-flex">
+
+    <!-- 🎬 ASRAMA RUBATH -->
+    <div class="video-box">
+      <video controls>
+        <source src="video/pondok.mp4" type="video/mp4">
+        Browser tidak mendukung video
+      </video>
+    </div>
+
+    <!-- ▶️ VIDEO TERBARU -->
+    <div class="video-box">
+      <iframe 
+        src="https://www.youtube.com/embed/w3tdRtM1HlI"
+        title="YouTube video"
+        allowfullscreen>
+      </iframe>
+
+  </div>
+
+</section>
+
+<style>
+
+/* ===== VIDEO SECTION ===== */
+.video-section {
+  text-align: center;
+}
+
+/* FLEX LAYOUT */
+.video-flex {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* BOX VIDEO */
+.video-box {
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+/* VIDEO & YOUTUBE FULL */
+.video-box video,
+.video-box iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  object-fit: cover;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .video-flex {
+    flex-direction: column;
+  }
+}
+</style>
+
+</section>
+
 <section class="map-section">
   <h2>Lokasi</h2>
 
