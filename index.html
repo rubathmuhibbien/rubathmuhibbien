@@ -362,8 +362,7 @@
    rel="noopener noreferrer"
    class="btn-primary fade-up delay-3">
    Dapatkan Informasi
-</a>
-    </a>
+   </a>
   </div>
 </section>
 
@@ -735,14 +734,6 @@ window.onload = function () {
   slider.addEventListener("mouseenter", () => clearInterval(auto));
   slider.addEventListener("mouseleave", () => auto = setInterval(autoSlide, 3000));
 
-  window.openPreview = function(src) {
-    document.getElementById("preview").style.display = "flex";
-    document.getElementById("preview-img").src = src;
-  }
-
-  window.closePreview = function() {
-    document.getElementById("preview").style.display = "none";
-  }
 }
 
 </body>
